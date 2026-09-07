@@ -1,0 +1,34 @@
+{
+  "name": "@halo/api",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./dist/index.js"
+  },
+  "scripts": {
+    "build": "tsdown",
+    "dev": "tsdown --watch",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@halo/auth": "workspace:^",
+    "@halo/core": "workspace:^",
+    "@halo/db": "workspace:^",
+    "@halo/transactional": "workspace:^",
+    "@hono/zod-openapi": "^1.6.3",
+    "@mobily/ts-belt": "4.0.0-rc.5",
+    "@scalar/hono-api-reference": "^0.12.1",
+    "@t3-oss/env-core": "^0.13.11",
+    "hono": "^4.13.7",
+    "ts-pattern": "^5.9.0",
+    "zod": "^4.5.4"
+  },
+  "devDependencies": {
+    "@halo/config": "workspace:^",
+    "tsdown": "^0.23.0",
+    "vitest": "^5.0.0"
+  }
+}

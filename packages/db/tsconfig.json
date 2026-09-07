@@ -1,0 +1,10 @@
+{
+  "extends": "@halo/config/tsconfig/node.json",
+  "compilerOptions": {
+    "paths": {
+      "@/*": ["./src/*"]
+    }
+  },
+  "include": ["src", "*.config.ts"],
+  "exclude": ["dist", "node_modules"]
+}

@@ -1,0 +1,22 @@
+---
+import { AccountPanel } from "@/components/account-panel";
+import Layout from "@/layouts/layout.astro";
+
+// src/middleware.ts already redirected a signed-out reader, so the user is set.
+const user = Astro.locals.user;
+
+if (!user) {
+  return Astro.redirect("/sign-in", 302);
+}
+---
+
+<Layout title="halo">
+  <main class="mx-auto max-w-2xl px-6 py-16">
+    <h1 class="font-serif text-4xl font-bold tracking-tight">halo</h1>
+    <p class="text-muted-foreground mt-2 mb-8">
+      Signed in. This page is server rendered for you alone.
+    </p>
+
+    <AccountPanel client:load initialName={user.name} initialEmail={user.email} />
+  </main>
+</Layout>
