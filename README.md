@@ -100,6 +100,37 @@ pnpm dev:all
 - API reference: http://localhost:4321/api/reference
 - Email preview: http://localhost:3001
 
+## Repository settings
+
+GitHub copies files from a template, but not settings. After you create a
+repo from this template, run these two commands once. Replace `OWNER/REPO`.
+
+```bash
+gh api -X PATCH repos/OWNER/REPO \
+  -F allow_squash_merge=true \
+  -F allow_merge_commit=false \
+  -F allow_rebase_merge=false \
+  -f squash_merge_commit_title=PR_TITLE \
+  -f squash_merge_commit_message=COMMIT_MESSAGES \
+  -F has_projects=false
+
+gh api -X PUT repos/OWNER/REPO/actions/permissions/workflow \
+  -f default_workflow_permissions=read \
+  -F can_approve_pull_request_reviews=true
+```
+
+The first command allows only squash merges for pull requests. The squash
+commit takes its title from the PR title and its body from the PR commits.
+It also hides the Projects tab. The second command lets release-please open
+its release PR.
+
+Local merges rebase instead: `pnpm install` sets `git config pull.rebase
+true` for the clone through the `prepare` script.
+
+To hide the Packages section on the repo home page, open the gear icon next
+to "About" and clear the "Packages" checkbox. GitHub has no API for this
+switch.
+
 ## Scripts
 
 | Command              | Action                                              |

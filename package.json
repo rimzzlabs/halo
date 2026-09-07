@@ -23,7 +23,7 @@
     "db:migrate": "pnpm --filter @halo/db migrate",
     "db:push": "pnpm --filter @halo/db push",
     "db:studio": "pnpm --filter @halo/db studio",
-    "prepare": "lefthook install && pnpm cf:types",
+    "prepare": "lefthook install && git config pull.rebase true && pnpm cf:types",
     "test": "turbo run test",
     "test:watch": "turbo run test:watch",
     "test:coverage": "turbo run test -- --coverage",
